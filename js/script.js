@@ -11,9 +11,17 @@ str.length - и получить её длину)
 Проверить, чтобы все работало без ошибок в консоли */
 "use strict";
 
-const numberOfFilms = +prompt('Скільки фільмів ви вже подивились?', '');
+let numberOfFilms;
 // console.log(numberOfFilms);
 
+function star() {
+    numberOfFilms = +prompt('Скільки фільмів ви вже подивились?', '');
+    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms) ) {
+    numberOfFilms = +prompt('Скільки фільмів ви вже подивились?', '');
+
+    }
+}
+star();
 const personalMovieDB = {
     count:numberOfFilms,
     movies: {},
@@ -29,16 +37,43 @@ const personalMovieDB = {
 // personalMovieDB.movies[c] = d;
 
 
-for (let i = 0; i<2; i++){
-    const a = prompt('Один з останніх фільмів, які подивились?', ''),
-      b = prompt('Як ви його оцінете?', '');
-    if (a != null && b != null && a !='' && b !='' && a.length < 50) {
-        personalMovieDB.movies[a] = b;
-    } else {
-        i--;
+
+function rememberMyFilms() {
+    for (let i = 0; i<2; i++){
+        const a = prompt('Один з останніх фільмів, які подивились?', ''),
+          b = prompt('Як ви його оцінете?', '');
+        if (a != null && b != null && a !='' && b !='' && a.length < 50) {
+            personalMovieDB.movies[a] = b;
+        } else {
+            i--;
+        }
     }
 }
-(personalMovieDB.count < 10) ? console.log('Подивились замало фільмів') : (personalMovieDB.count >= 10 && personalMovieDB.count < 30) ? console.log('ви типовий глядач') : (personalMovieDB.count >= 30) ? console.log('Ви кіноман') : console.log('Сталась помилка'); 
+rememberMyFilms();
+
+function detectPersonalLevel() {
+    
+    (personalMovieDB.count < 10) ?  console.log('Подивились замало фільмів') : 
+    (personalMovieDB.count >= 10 && personalMovieDB.count < 30) ? 
+    console.log('ви типовий глядач') : (personalMovieDB.count >= 30) ? 
+    console.log('Ви кіноман') : console.log('Сталась помилка'); 
+}
+detectPersonalLevel();
+
+function showMyDb(hidden) {
+    if (!hidden) {
+        console.log(personalMovieDB)
+    }
+}
+showMyDb(personalMovieDB.privat);
+
+function writeYourGenres() {
+    for (let i = 1; i <=3; i++){
+        personalMovieDB.genres[i-1] = prompt(`Ваш улюблений жанр під номером ${i}`, '');
+    }
+
+}
+writeYourGenres();
 /*
 // будуєм ялинку заповнючи пустими строками
 const lines = 5;
@@ -79,4 +114,24 @@ for(let i = 1; i<=arr.length; i++) {
 }
 
 */
- 
+  // Место для третьей задачи
+// function getMathResult(base, multiplay) {
+//     let res = '';
+//     if (multiplay <=0 || typeof(multiplay) === 'string') {
+//          res = base;
+//     }else{
+//         for (let i = 1; i <=multiplay; i++) {
+//             if ( i === multiplay) {
+//                 res +=`${base*i}`
+//             } else {
+//                 res +=`${base*i}---`;
+//             }
+//         }
+//     }
+//     return res;
+// }
+
+
+
+
+
